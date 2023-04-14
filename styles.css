@@ -6,21 +6,28 @@ body {
     justify-content: center;
     text-align: center;
 }
+.container-fluid {
+    margin-left: 310px;
+}
+.nav-item{
+    margin-right: 20px;
+}
 
 .h5 {
     text-align: center;
     margin: 20px 200px 200px;
 }
 
-#puzzle {
+#guess-check {
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-top: 20px;
+    margin-top: 30px;
     /* İsterseniz bu değeri değiştirerek yükseklik ayarını yapabilirsiniz */
+    margin-bottom: 50px;
 }
 
-#puzzle div {
+#guess-check div {
     flex: 1;
     display: flex;
     justify-content: center;
@@ -63,4 +70,13 @@ body {
     background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
     background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
     text-decoration: none;
+}
+.guess-list{
+    width: 50px;
+    height: 50px;
+    background-color: beige;
+    margin-left: 600px;
+    margin-top: 2px;
+    border-color:  #3cb0fd;
+
 }

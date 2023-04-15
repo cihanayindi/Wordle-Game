@@ -33,6 +33,8 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-left: 325px;
+    margin-right: 275px;
 }
 
 .guess-control {
@@ -76,7 +78,6 @@ body {
 #guess-list {
   display: flex;
   flex-direction: column;
-  margin-left: 850px;
 }
 
 .row {
@@ -96,4 +97,6 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+       
 

@@ -71,12 +71,25 @@ body {
     background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
     text-decoration: none;
 }
-.guess-list{
-    width: 50px;
-    height: 50px;
-    background-color: beige;
-    margin-left: 600px;
-    margin-top: 2px;
-    border-color:  #3cb0fd;
+#guess-list {
+  display: flex;
+  flex-direction: column;
+  margin-left: 850px;
+}
 
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.cell {
+  width: 50px;
+  height: 50px;
+  background-color: beige;
+  margin-right: 2px;
+  border: 1px solid white;
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

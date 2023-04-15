@@ -1,6 +1,7 @@
 body {
     background-color: #ffffff;
 }
+/*navbar*/
 .navbar {
     margin: 0;
     justify-content: center;
@@ -12,7 +13,7 @@ body {
 .nav-item{
     margin-right: 20px;
 }
-
+/*check */
 .h5 {
     text-align: center;
     margin: 20px 200px 200px;
@@ -71,6 +72,7 @@ body {
     background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
     text-decoration: none;
 }
+/*game board */
 #guess-list {
   display: flex;
   flex-direction: column;
@@ -79,7 +81,8 @@ body {
 
 .row {
   display: flex;
-  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 .cell {

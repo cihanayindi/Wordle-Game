@@ -30,7 +30,6 @@ function ClickMe() {  // butona tıklanınca çalışacak fonksiyon
 
     let inputValue = guessInput.value.toUpperCase();
 
-    tahminler.push(inputValue)
     if (sayac < 6 && durum == 0) {
 
         if ((/\d/.test(inputValue))) { // TAHMİN SAYI İÇERİYORSA
@@ -46,16 +45,19 @@ function ClickMe() {  // butona tıklanınca çalışacak fonksiyon
         }
         
         if (inputValue == DogruKelime) { // TAHMİN DOĞRUYSA
+          tahminler.push(inputValue)
           const cellStyle = document.querySelectorAll('.cell');
           for(e = 0; e<5; e++){
             cellStyle[e + (sayac*5)].style.backgroundColor = 'green';
           }
+          tahminler.push(inputValue);
           TabloyuDoldur();
           alert("Tebrikler doğru kelimeyi bildiniz!");
           durum = 1;
         } 
-
+        
         else {
+            tahminler.push(inputValue)
             for (var i = 0; i < inputValue.length; i++) {
                 var letter = inputValue[i];
                 if (DogruKelime.includes(letter)) { // DOĞRU KELİME : GAZAP TAHMİN : KALFA 
@@ -77,6 +79,7 @@ function ClickMe() {  // butona tıklanınca çalışacak fonksiyon
                 }
             }
             TabloyuDoldur();
+            
         }
 
         // var k = 0;

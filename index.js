@@ -1,20 +1,15 @@
 // listeyi şimdilik böyle tanımladım fakat bir kelimeler.txt dosyası da
 // oluşturdum ordan okutma işlemi daha iyi olur ona bakacağım
 
-let kelimeler = ["RADYO", "SEHPA", "DOLAP", "KALEM", "KAVUN", "KÖPEK", "MERAK", "GAZAP", "ROMAN", "CEVİZ"]
-var kelime = kelimeler[Math.floor(Math.random() * kelimeler.length)];
+let kelimeler = ["RADYO", "SEHPA", "DOLAP", "KALEM", "KAVUN", "KÖPEK", "MERAK", "GAZAP", "ROMAN", "CEVİZ"] 
+var DogruKelime = kelimeler[Math.floor(Math.random() * kelimeler.length)];
 let tahminler = []
-
-// html kodunda yapılan kelime girişini yakalıyor
-
 
 let sayac = 0;
 
 const guessInput = document.querySelector('.guess-control');
 
-// butona tıklanınca çalışacak fonksiyon
-
-function click_me() {
+function ClickMe() {  // butona tıklanınca çalışacak fonksiyon
     // boşluğa girilen string değerini büyük harflere dönüştürüp
     // kelimeler listesinin içinde var mı diye sorguluyor
     // eğer varsa direkt oyunu bitirecek yoksa hangi harfler 
@@ -22,64 +17,82 @@ function click_me() {
 
     let inputValue = guessInput.value.toUpperCase();
 
-    if ((/\d/.test(inputValue))) {
-        alert("Kutucukta sayı olmamalı.");
-        return 0;
-    }
-
     tahminler.push(inputValue)
     if (sayac < 6) {
-        if (inputValue == kelime) {
-            console.log("doğru tahmin");
-            console.log(tahminler)
-            const cellStyle = document.querySelectorAll('.cell');
-            cellStyle[i + (sayac*5)].style.backgroundColor = 'green';
-            sayac = 5;
+
+        if ((/\d/.test(inputValue))) { // TAHMİN SAYI İÇERİYORSA
+          guessInput.value = "";
+          alert("Kutucukta sayı olmamalı.");
+          return 0;
+        }
+
+        if (inputValue.length != 5) { // TAHMİN 5 HARFLİ DEĞİLSE
+          guessInput.value = "";
+          alert("Girdiğiniz kelime 5 harfli olmalı.");
+          return 0;
+        }
+
+        if (inputValue == DogruKelime) { // TAHMİN DOĞRUYSA
+          const cellStyle = document.querySelectorAll('.cell');
+          cellStyle[i + (sayac*5)].style.backgroundColor = 'green';
+          sayac = 5;
         } 
+
         else {
             for (var i = 0; i < inputValue.length; i++) {
                 var letter = inputValue[i];
-                if (kelime.includes(letter)) {
-                    var index = kelime.indexOf(letter);
+                if (DogruKelime.includes(letter)) { // DOĞRU KELİME : GAZAP TAHMİN : KALFA 
+                    var index = DogruKelime.indexOf(letter);
                     if (index == i) {
-                        console.log(letter, " harfi kelime içinde var ve yeri doğru. Kelime: ", kelime);
+                        console.log(letter, " harfi kelime içinde var ve yeri doğru. Kelime: ", DogruKelime);
                         const cellStyle = document.querySelectorAll('.cell');
                         cellStyle[i + (sayac*5)].style.backgroundColor = 'green';
                         
                     } else {
-                        console.log(letter, " harfi kelime içinde var ama yeri doğru değil. Kelime: ", kelime); 
+                        console.log(letter, " harfi kelime içinde var ama yeri doğru değil. Kelime: ", DogruKelime); 
                         const cellStyle = document.querySelectorAll('.cell');
                         cellStyle[i + (sayac*5)].style.backgroundColor = 'yellow';
                     }
                 } else {
-                    console.log(letter, " harfi kelimede yok. Kelime: ", kelime);
+                    console.log(letter, " harfi kelimede yok. Kelime: ", DogruKelime);
                     const cellStyle = document.querySelectorAll('.cell');
                     cellStyle[i + (sayac*5)].style.backgroundColor = 'gray';
                 }
             }
         }
         const cells = document.querySelectorAll('.cell');
-        var k = 0;
-    
-        for(let word of tahminler){
-            var j = k+5;
-            var harf = 0;
-
-            for(i = k; i<j; i++){
-                cells[i].textContent = word[harf];
-                harf++;
-            }
-
-            k += 5;
+        
+        let tahminlerString = tahminler.join("");
+        
+        var i = 0;
+        for(let tahminHarf of tahminlerString){
+          cells[i].textContent = tahminHarf;
+          i++;
         }
+
+        // var k = 0;
+        // for(let word of tahminler){ // AHMET, FATMA, DEFNE
+        //     var j = k+5;
+        //     var harf = 0;
+
+        //     for(i = k; i<j; i++){
+        //         cells[i].textContent = word[harf];
+        //         harf++;
+        //     }
+        //     k += 5;
+        // }
         sayac++;
     }
-  }
+    else{ // toplam deneme hakları biterse alert veriyor.
+      guessInput.value = "";
+      alert("Tüm deneme haklarınız bitti. ");
+    }
+}
 
-document.querySelector('#check-button').addEventListener('click', click_me);
+document.querySelector('#check-button').addEventListener('click', ClickMe);
 
 
-function addButtonClickHandler() {
+function KeyboardActivies() {
     const buttons = document.querySelectorAll(".keyboard-row button");
     const input = document.querySelector(".guess-control");
     
@@ -99,6 +112,6 @@ function addButtonClickHandler() {
     });
   }
   
-  addButtonClickHandler();
+  KeyboardActivies();
   
   

@@ -6,8 +6,21 @@ var DogruKelime = kelimeler[Math.floor(Math.random() * kelimeler.length)];
 let tahminler = []
 
 let sayac = 0;
+let durum = 0;
 
 const guessInput = document.querySelector('.guess-control');
+
+function TabloyuDoldur() { // girilen tahmini kutucuklara yazar.
+  const cells = document.querySelectorAll('.cell');
+        
+  let tahminlerString = tahminler.join("");
+  
+  var i = 0;
+  for(let tahminHarf of tahminlerString){
+    cells[i].textContent = tahminHarf;
+    i++;
+  }
+}
 
 function ClickMe() {  // butona tıklanınca çalışacak fonksiyon
     // boşluğa girilen string değerini büyük harflere dönüştürüp
@@ -18,7 +31,7 @@ function ClickMe() {  // butona tıklanınca çalışacak fonksiyon
     let inputValue = guessInput.value.toUpperCase();
 
     tahminler.push(inputValue)
-    if (sayac < 6) {
+    if (sayac < 6 && durum == 0) {
 
         if ((/\d/.test(inputValue))) { // TAHMİN SAYI İÇERİYORSA
           guessInput.value = "";
@@ -31,11 +44,15 @@ function ClickMe() {  // butona tıklanınca çalışacak fonksiyon
           alert("Girdiğiniz kelime 5 harfli olmalı.");
           return 0;
         }
-
+        
         if (inputValue == DogruKelime) { // TAHMİN DOĞRUYSA
           const cellStyle = document.querySelectorAll('.cell');
-          cellStyle[i + (sayac*5)].style.backgroundColor = 'green';
-          sayac = 5;
+          for(e = 0; e<5; e++){
+            cellStyle[e + (sayac*5)].style.backgroundColor = 'green';
+          }
+          TabloyuDoldur();
+          alert("Tebrikler doğru kelimeyi bildiniz!");
+          durum = 1;
         } 
 
         else {
@@ -59,15 +76,7 @@ function ClickMe() {  // butona tıklanınca çalışacak fonksiyon
                     cellStyle[i + (sayac*5)].style.backgroundColor = 'gray';
                 }
             }
-        }
-        const cells = document.querySelectorAll('.cell');
-        
-        let tahminlerString = tahminler.join("");
-        
-        var i = 0;
-        for(let tahminHarf of tahminlerString){
-          cells[i].textContent = tahminHarf;
-          i++;
+            TabloyuDoldur();
         }
 
         // var k = 0;
@@ -83,6 +92,11 @@ function ClickMe() {  // butona tıklanınca çalışacak fonksiyon
         // }
         sayac++;
     }
+    else if (durum == 1){
+      guessInput.value = "";
+      alert("Yarışmayı zaten kazandınız tekrar başlatmak ister misiniz?");
+    }
+
     else{ // toplam deneme hakları biterse alert veriyor.
       guessInput.value = "";
       alert("Tüm deneme haklarınız bitti. ");

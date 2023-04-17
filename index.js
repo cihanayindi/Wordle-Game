@@ -1,6 +1,6 @@
 // listeyi şimdilik böyle tanımladım fakat bir kelimeler.txt dosyası da
 // oluşturdum ordan okutma işlemi daha iyi olur ona bakacağım
-
+function game(){
 let kelimeler = ["RADYO", "SEHPA", "DOLAP", "KALEM", "KAVUN", "KÖPEK", "MERAK", "GAZAP", "ROMAN", "CEVİZ"] 
 var DogruKelime = kelimeler[Math.floor(Math.random() * kelimeler.length)];
 let tahminler = []
@@ -75,6 +75,14 @@ function ClickMe() {  // butona tıklanınca çalışacak fonksiyon
           document.getElementById("mesaj").style.marginTop="25px";
           document.getElementById("mesaj").style.fontSize="40px";
           Confetti();
+          const restartButton = document.querySelector("#restart-button");
+          restartButton.style.display = "block";
+          restartButton.addEventListener("click",game());
+          
+               
+          
+          
+
           durum = 1;
         } 
         
@@ -151,7 +159,8 @@ function KeyboardActivies() {
       });
     });
   }
-  
+
   KeyboardActivies();
-  
+}
+
   

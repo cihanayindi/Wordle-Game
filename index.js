@@ -6,14 +6,13 @@ let kelimeler = ["RADYO", "SEHPA", "DOLAP", "KALEM", "KAVUN", "KÖPEK", "MERAK",
 var DogruKelime = kelimeler[Math.floor(Math.random() * kelimeler.length)];
 let tahminler = []
 
-let sayac = 0;
-let durum = 0;
+let sayac = 0; // deneme hakkı için sayac
+let durum = 0; // kazanıp kazanmama durumunu kontrol etmek için değişken
 
-const guessInput = document.querySelector('.guess-control');
+const guessInput = document.querySelector('.guess-control'); 
 
 function TabloyuDoldur() { // girilen tahmini kutucuklara yazar.
   const cells = document.querySelectorAll('.cell');
-  console.log("doldurdu");
   let tahminlerString = tahminler.join("");
   
   var i = 0;
@@ -23,7 +22,7 @@ function TabloyuDoldur() { // girilen tahmini kutucuklara yazar.
   }
 }
 
-function TabloyuBosalt() { // girilen tahmini kutucuklara yazar.
+function TabloyuBosalt() { // Tahminleri kutucuklardan siler
   const cells = document.querySelectorAll('.cell');
   
   var i;
@@ -40,6 +39,16 @@ function RestartButonu() {
   sayac = 0;
   durum = 0;
   TabloyuBosalt();
+  const KlavyeHarfleri = document.querySelectorAll('.keyboard-row button');
+  for (let KlavyeHarfi of KlavyeHarfleri) {
+    KlavyeHarfi.style.backgroundColor = 'rgb(219, 219, 219)';
+  }
+
+  let mesajElemani = document.getElementById("mesaj");
+  mesajElemani.style.display = 'none';
+
+  let restartButtonElemani = document.getElementById("restart-button");
+  restartButtonElemani.style.display="none";
   guessInput.value = "";
 }
 
@@ -60,7 +69,7 @@ function Confetti(){
   stop();
 }
 
-function ClickMe() {  // butona tıklanınca çalışacak fonksiyon
+function ClickMe() {  // check me butona tıklanınca çalışacak fonksiyon
     // boşluğa girilen string değerini büyük harflere dönüştürüp
     // kelimeler listesinin içinde var mı diye sorguluyor
     // eğer varsa direkt oyunu bitirecek yoksa hangi harfler 
@@ -177,8 +186,10 @@ function KeyboardActivies() {
           // Burada inputtan son karakteri silmek için bir kod yazabilirsiniz.
           input.value = input.value.slice(0, -1);
         } else {
-          // Butona basıldığında inputa key değerini ekleme
-          input.value += key;
+          if (input.value.length < 5) {
+            // Butona basıldığında inputa key değerini ekleme
+            input.value += key;
+          }
         }
       });
     });

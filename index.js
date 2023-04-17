@@ -2,7 +2,8 @@
 // oluşturdum ordan okutma işlemi daha iyi olur ona bakacağım
 
 let kelimeler = ["RADYO", "SEHPA", "DOLAP", "KALEM", "KAVUN", "KÖPEK", "MERAK", "GAZAP", "ROMAN", "CEVİZ"] 
-var DogruKelime = kelimeler[Math.floor(Math.random() * kelimeler.length)];
+var DogruKelime = "KALFA";
+// var DogruKelime = kelimeler[Math.floor(Math.random() * kelimeler.length)];
 let tahminler = []
 
 let sayac = 0;
@@ -20,6 +21,26 @@ function TabloyuDoldur() { // girilen tahmini kutucuklara yazar.
     cells[i].textContent = tahminHarf;
     i++;
   }
+}
+
+function TabloyuBosalt() { // girilen tahmini kutucuklara yazar.
+  const cells = document.querySelectorAll('.cell');
+  
+  var i;
+  for(i=0; i<30; i++){
+    cells[i].textContent = "";
+    cells[i].style.backgroundColor = "white";
+  }
+}
+
+function RestartButonu() {
+  DogruKelime = kelimeler[Math.floor(Math.random() * kelimeler.length)];
+  tahminler = []
+  
+  sayac = 0;
+  durum = 0;
+  TabloyuBosalt();
+  guessInput.value = "";
 }
 
 function Confetti(){
@@ -69,27 +90,43 @@ function ClickMe() {  // butona tıklanınca çalışacak fonksiyon
           }
           tahminler.push(inputValue);
           TabloyuDoldur();
-          let mesaj= ("Kazandın! 👏");
-          document.getElementById("mesaj").innerHTML = mesaj;
-          document.getElementById("mesaj").style.marginLeft="600px";
-          document.getElementById("mesaj").style.marginTop="25px";
-          document.getElementById("mesaj").style.fontSize="40px";
+
+          let mesaj= ("Kazandın!");
+          let mesajElemani = document.getElementById("mesaj");
+          mesajElemani.innerHTML = mesaj;
+          mesajElemani.style.marginLeft="45%";
+          mesajElemani.style.marginRight="45%";
+          mesajElemani.style.marginTop="25px";
+          mesajElemani.style.fontSize="40px";
+
+          let restartButtonElemani = document.getElementById("restart-button");
+          restartButtonElemani.style.display="block";
+          restartButtonElemani.className = "btn";
+          restartButtonElemani.style.marginLeft="45%";
+          restartButtonElemani.style.marginRight="45%";
+          restartButtonElemani.style.fontSize="12px";
+          restartButtonElemani.addEventListener('click', RestartButonu);
           Confetti();
           durum = 1;
         } 
         
         else {
             tahminler.push(inputValue)
-            for (var i = 0; i < inputValue.length; i++) {
+            for (var i = 0; i < inputValue.length; i++) { // TAHMİN : ALARA 3  KELİME : KALFA 2 
                 var letter = inputValue[i];
+
+                let countTahmin = inputValue.split("").filter(char => char === letter).length;
+                let countDogru = DogruKelime.split("").filter(char => char === letter).length;
+                
                 if (DogruKelime.includes(letter)) { 
                     var index = DogruKelime.indexOf(letter);
+
                     if (index == i) {
                         console.log(letter, " harfi kelime içinde var ve yeri doğru. Kelime: ", DogruKelime);
                         const cellStyle = document.querySelectorAll('.cell');
                         cellStyle[i + (sayac*5)].style.backgroundColor = 'green';
                         
-                    } else {
+                    } else if (index  != i && countDogru >= countTahmin) {
                         console.log(letter, " harfi kelime içinde var ama yeri doğru değil. Kelime: ", DogruKelime); 
                         const cellStyle = document.querySelectorAll('.cell');
                         cellStyle[i + (sayac*5)].style.backgroundColor = 'yellow';

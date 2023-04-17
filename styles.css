@@ -89,6 +89,20 @@ body {
     border-radius: 4px;
 }
 
+#mesaj {
+    margin-left: 45%;
+    margin-right: 45%;
+    margin-top: 25px;
+    font-size: 40px;
+}
+
+#restart-button {
+    display: none;
+    margin-left: 45%;
+    margin-right: 45%;
+    font-size: 12px;
+}
+
 /*keyboard*/
 
 #keyboard-container {

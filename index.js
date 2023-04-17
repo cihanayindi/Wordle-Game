@@ -22,6 +22,22 @@ function TabloyuDoldur() { // girilen tahmini kutucuklara yazar.
   }
 }
 
+/*function confetti(){
+  const start = () =>{
+    setTimeout(function(){
+      confetti.start();
+    },1000);
+  };
+  const stop = () =>{
+    setTimeout(function(){
+      confetti.stop();
+    },5000);
+  }
+  start();
+  stop();
+
+}*/
+
 function ClickMe() {  // butona tıklanınca çalışacak fonksiyon
     // boşluğa girilen string değerini büyük harflere dönüştürüp
     // kelimeler listesinin içinde var mı diye sorguluyor
@@ -52,7 +68,11 @@ function ClickMe() {  // butona tıklanınca çalışacak fonksiyon
           }
           tahminler.push(inputValue);
           TabloyuDoldur();
-          alert("Tebrikler doğru kelimeyi bildiniz!");
+          let mesaj= ("Kazandın! 👏");
+          document.getElementById("mesaj").innerHTML = mesaj;
+          document.getElementById("mesaj").style.marginLeft="600px";
+          document.getElementById("mesaj").style.marginTop="25px";
+          document.getElementById("mesaj").style.fontSize="40px";
           durum = 1;
         } 
         
@@ -79,6 +99,7 @@ function ClickMe() {  // butona tıklanınca çalışacak fonksiyon
                 }
             }
             TabloyuDoldur();
+            guessInput.value="";
             
         }
 
@@ -117,7 +138,7 @@ function KeyboardActivies() {
       button.addEventListener("click", () => {
         const key = button.getAttribute("data-key");
         if (key === "enter") {
-          click_me();
+          ClickMe();
         } else if (key === "del") {
           // Burada inputtan son karakteri silmek için bir kod yazabilirsiniz.
           input.value = input.value.slice(0, -1);

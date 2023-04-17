@@ -22,7 +22,9 @@ function TabloyuDoldur() { // girilen tahmini kutucuklara yazar.
   }
 }
 
-/*function confetti(){
+function Confetti(){
+  var applauseSound = new Audio('alkis.mp3');
+  applauseSound.play();
   const start = () =>{
     setTimeout(function(){
       confetti.start();
@@ -35,8 +37,7 @@ function TabloyuDoldur() { // girilen tahmini kutucuklara yazar.
   }
   start();
   stop();
-
-}*/
+}
 
 function ClickMe() {  // butona tıklanınca çalışacak fonksiyon
     // boşluğa girilen string değerini büyük harflere dönüştürüp
@@ -61,7 +62,7 @@ function ClickMe() {  // butona tıklanınca çalışacak fonksiyon
         }
         
         if (inputValue == DogruKelime) { // TAHMİN DOĞRUYSA
-          tahminler.push(inputValue)
+          
           const cellStyle = document.querySelectorAll('.cell');
           for(e = 0; e<5; e++){
             cellStyle[e + (sayac*5)].style.backgroundColor = 'green';
@@ -73,6 +74,7 @@ function ClickMe() {  // butona tıklanınca çalışacak fonksiyon
           document.getElementById("mesaj").style.marginLeft="600px";
           document.getElementById("mesaj").style.marginTop="25px";
           document.getElementById("mesaj").style.fontSize="40px";
+          Confetti();
           durum = 1;
         } 
         
@@ -80,7 +82,7 @@ function ClickMe() {  // butona tıklanınca çalışacak fonksiyon
             tahminler.push(inputValue)
             for (var i = 0; i < inputValue.length; i++) {
                 var letter = inputValue[i];
-                if (DogruKelime.includes(letter)) { // DOĞRU KELİME : GAZAP TAHMİN : KALFA 
+                if (DogruKelime.includes(letter)) { 
                     var index = DogruKelime.indexOf(letter);
                     if (index == i) {
                         console.log(letter, " harfi kelime içinde var ve yeri doğru. Kelime: ", DogruKelime);

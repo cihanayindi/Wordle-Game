@@ -1,5 +1,5 @@
 1- kalfa ve kalem gibi iki A'li durumlar düzeltilecek
-2- kazandınız div'i eklenecek
+2- kazandınız div'i eklenecek --- YAPILDI
 3- navbar güncellenecek
 4- klavyedeki harflerin rengi değişme olayı yapılacak
 5- ödev dökümanı kontrol edilsin

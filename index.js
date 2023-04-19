@@ -1,7 +1,7 @@
 // listeyi şimdilik böyle tanımladım fakat bir kelimeler.txt dosyası da
 // oluşturdum ordan okutma işlemi daha iyi olur ona bakacağım
 
-let kelimeler = ["RADYO", "SEHPA", "DOLAP", "KALEM", "KAVUN", "KÖPEK", "MERAK", "GAZAP", "ROMAN", "CEVİZ"] 
+let kelimeler = ["RADYO", "SEHPA", "DOLAP", "KALEM", "KAVUN", "KÖPEK", "MERAK", "GAZAP", "ROMAN", "TAVUK"] 
 // var DogruKelime = "KALFA";
 var DogruKelime = kelimeler[Math.floor(Math.random() * kelimeler.length)];
 let tahminler = []
@@ -95,19 +95,19 @@ function ClickMe() {  // check me butona tıklanınca çalışacak fonksiyon
           const cellStyle = document.querySelectorAll('.cell');
           for(e = 0; e<5; e++){
             const KlavyeHarfi = document.querySelector(`button[data-key="${inputValue[e].toLowerCase()}"]`);
-            cellStyle[e + (sayac*5)].style.backgroundColor = 'green';
-            KlavyeHarfi.style.backgroundColor = 'green';
+            cellStyle[e + (sayac*5)].style.backgroundColor = '#538d4e';
+            KlavyeHarfi.style.backgroundColor = '#538d4e';
           }
           
           tahminler.push(inputValue);
           TabloyuDoldur();
 
-          let mesaj= ("Kazandın!");
+          let mesaj= ("Kazandınız!🏆");
           let mesajElemani = document.getElementById("mesaj");
           mesajElemani.innerHTML = mesaj;
 
           let restartButtonElemani = document.getElementById("restart-button");
-          restartButtonElemani.style.display="block";
+          restartButtonElemani.style.display="flex";
           restartButtonElemani.className = "btn";
           restartButtonElemani.addEventListener('click', RestartButonu);
           Confetti();
@@ -129,14 +129,14 @@ function ClickMe() {  // check me butona tıklanınca çalışacak fonksiyon
                     if (index == i) {
                         console.log(letter, " harfi kelime içinde var ve yeri doğru. Kelime: ", DogruKelime);
                         const cellStyle = document.querySelectorAll('.cell');
-                        KlavyeHarfi.style.backgroundColor = 'green';
-                        cellStyle[i + (sayac*5)].style.backgroundColor = 'green';
+                        KlavyeHarfi.style.backgroundColor = '#538d4e';
+                        cellStyle[i + (sayac*5)].style.backgroundColor = '#538d4e';
                         
                     } else { // else if (index  != i && countDogru >= countTahmin)
                         console.log(letter, " harfi kelime içinde var ama yeri doğru değil. Kelime: ", DogruKelime); 
                         const cellStyle = document.querySelectorAll('.cell');
-                        KlavyeHarfi.style.backgroundColor = 'yellow';
-                        cellStyle[i + (sayac*5)].style.backgroundColor = 'yellow';
+                        KlavyeHarfi.style.backgroundColor = '#dde632';
+                        cellStyle[i + (sayac*5)].style.backgroundColor = '#dde632';
 
                     }
                 } else {
@@ -155,8 +155,9 @@ function ClickMe() {  // check me butona tıklanınca çalışacak fonksiyon
       guessInput.value = "";
       alert("Yarışmayı zaten kazandınız tekrar başlatmak ister misiniz?");
     }
+    
 
-    else{ // toplam deneme hakları biterse alert veriyor.
+    else {  // toplam deneme hakları biterse alert veriyor.
       TabloyuDoldur();
       guessInput.value = "";
       let mesaj= ("Kaybettin!");
@@ -167,6 +168,7 @@ function ClickMe() {  // check me butona tıklanınca çalışacak fonksiyon
       restartButtonElemani.className = "btn";
       restartButtonElemani.addEventListener('click', RestartButonu);
     }
+
     
 }
 

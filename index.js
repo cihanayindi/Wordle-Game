@@ -120,8 +120,8 @@ function ClickMe() {  // check me butona tıklanınca çalışacak fonksiyon
                 var letter = inputValue[i];
                 
                 const KlavyeHarfi = document.querySelector(`button[data-key="${letter.toLowerCase()}"]`);
-                let countTahmin = inputValue.split("").filter(char => char === letter).length;
-                let countDogru = DogruKelime.split("").filter(char => char === letter).length;
+                // let countTahmin = inputValue.split("").filter(char => char === letter).length;
+                // let countDogru = DogruKelime.split("").filter(char => char === letter).length;
                 
                 if (DogruKelime.includes(letter)) { 
                     var index = DogruKelime.indexOf(letter);
@@ -160,7 +160,7 @@ function ClickMe() {  // check me butona tıklanınca çalışacak fonksiyon
     else {  // toplam deneme hakları biterse alert veriyor.
       TabloyuDoldur();
       guessInput.value = "";
-      let mesaj= ("Kaybettin!");
+      let mesaj= ("Kaybettiniz!☹");
       let mesajElemani = document.getElementById("mesaj");
       mesajElemani.innerHTML = mesaj;
       let restartButtonElemani = document.getElementById("restart-button");
@@ -168,12 +168,9 @@ function ClickMe() {  // check me butona tıklanınca çalışacak fonksiyon
       restartButtonElemani.className = "btn";
       restartButtonElemani.addEventListener('click', RestartButonu);
     }
-
-    
 }
 
 document.querySelector('#check-button').addEventListener('click', ClickMe);
-
 
 function KeyboardActivies() {
     const buttons = document.querySelectorAll(".keyboard-row button");

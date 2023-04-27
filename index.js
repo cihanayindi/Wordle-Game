@@ -2,7 +2,7 @@
 // oluşturdum ordan okutma işlemi daha iyi olur ona bakacağım
 
 let kelimeler = ["RADYO", "SEHPA", "DOLAP", "KALEM", "KAVUN", "KÖPEK", "MERAK", "GAZAP", "ROMAN", "TAVUK"] 
-// var DogruKelime = "KALFA";
+// var DogruKelime = "CEVİZ";
 var DogruKelime = kelimeler[Math.floor(Math.random() * kelimeler.length)];
 let tahminler = []
 
@@ -75,8 +75,8 @@ function ClickMe() {  // check me butona tıklanınca çalışacak fonksiyon
     // eğer varsa direkt oyunu bitirecek yoksa hangi harfler 
     // yerler vb uyuşuyor diye bir geri dönüş yapacak.
 
-    let inputValue = guessInput.value.toUpperCase();
-
+    let inputValue = guessInput.value.toLocaleUpperCase('tr-TR');
+  
     if (sayac < 6 && durum == 0) {
         if ((/\d/.test(inputValue))) { // TAHMİN SAYI İÇERİYORSA
           guessInput.value = "";
@@ -94,7 +94,7 @@ function ClickMe() {  // check me butona tıklanınca çalışacak fonksiyon
           
           const cellStyle = document.querySelectorAll('.cell');
           for(e = 0; e<5; e++){
-            const KlavyeHarfi = document.querySelector(`button[data-key="${inputValue[e].toLowerCase()}"]`);
+            const KlavyeHarfi = document.querySelector(`button[data-key="${inputValue[e].toLocaleLowerCase('tr-TR')}"]`);
             cellStyle[e + (sayac*5)].style.backgroundColor = '#538d4e';
             KlavyeHarfi.style.backgroundColor = '#538d4e';
           }
@@ -119,7 +119,7 @@ function ClickMe() {  // check me butona tıklanınca çalışacak fonksiyon
             for (var i = 0; i < inputValue.length; i++) { // TAHMİN : ALARA 3  KELİME : KALFA 2 
                 var letter = inputValue[i];
                 
-                const KlavyeHarfi = document.querySelector(`button[data-key="${letter.toLowerCase()}"]`);
+                const KlavyeHarfi = document.querySelector(`button[data-key="${letter.toLocaleLowerCase('tr-TR')}"]`);
                 // let countTahmin = inputValue.split("").filter(char => char === letter).length;
                 // let countDogru = DogruKelime.split("").filter(char => char === letter).length;
                 
@@ -127,20 +127,20 @@ function ClickMe() {  // check me butona tıklanınca çalışacak fonksiyon
                     var index = DogruKelime.indexOf(letter);
 
                     if (index == i) {
-                        console.log(letter, " harfi kelime içinde var ve yeri doğru. Kelime: ", DogruKelime);
+                        // console.log(letter, " harfi kelime içinde var ve yeri doğru. Kelime: ", DogruKelime);
                         const cellStyle = document.querySelectorAll('.cell');
                         KlavyeHarfi.style.backgroundColor = '#538d4e';
                         cellStyle[i + (sayac*5)].style.backgroundColor = '#538d4e';
                         
                     } else { // else if (index  != i && countDogru >= countTahmin)
-                        console.log(letter, " harfi kelime içinde var ama yeri doğru değil. Kelime: ", DogruKelime); 
+                        // console.log(letter, " harfi kelime içinde var ama yeri doğru değil. Kelime: ", DogruKelime); 
                         const cellStyle = document.querySelectorAll('.cell');
                         KlavyeHarfi.style.backgroundColor = '#dde632';
                         cellStyle[i + (sayac*5)].style.backgroundColor = '#dde632';
 
                     }
                 } else {
-                    console.log(letter, " harfi kelimede yok. Kelime: ", DogruKelime);
+                    // console.log(letter, " harfi kelimede yok. Kelime: ", DogruKelime);
                     const cellStyle = document.querySelectorAll('.cell');
                     KlavyeHarfi.style.backgroundColor = 'gray';
                     cellStyle[i + (sayac*5)].style.backgroundColor = 'gray';

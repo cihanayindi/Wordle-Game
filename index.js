@@ -170,6 +170,7 @@ function ClickMe() {  // check me butona tıklanınca çalışacak fonksiyon
       let mesaj= ("Kaybettiniz!☹");
       let mesajElemani = document.getElementById("mesaj");
       mesajElemani.innerHTML = mesaj;
+      mesajElemani.style.display="flex";
       let restartButtonElemani = document.getElementById("restart-button");
       restartButtonElemani.style.display="block";
       restartButtonElemani.className = "btn";

@@ -32,7 +32,7 @@ function TabloyuBosalt() { // Tahminleri kutucuklardan siler
   }
 }
 
-function RestartButonu() {
+function RestartButonu() { // Oyuncu oyunu tekrar başlatmak isterse gerekli işlemleri yapan fonksiyon
   DogruKelime = kelimeler[Math.floor(Math.random() * kelimeler.length)];
   tahminler = []
   
@@ -52,7 +52,7 @@ function RestartButonu() {
   guessInput.value = "";
 }
 
-function Confetti(){
+function Confetti(){ // Kazanma durumunda alkış sesi ve confetti efekti veren fonksiyon
   var applauseSound = new Audio('alkis.mp3');
   applauseSound.play();
   const start = () =>{

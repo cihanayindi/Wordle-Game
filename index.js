@@ -1,12 +1,9 @@
-// listeyi şimdilik böyle tanımladım fakat bir kelimeler.txt dosyası da
-// oluşturdum ordan okutma işlemi daha iyi olur ona bakacağım
-
 let kelimeler = ["RADYO", "SEHPA", "DOLAP", "KALEM", "KAVUN", "KÖPEK", "MERAK", "GAZAP", "ROMAN", "TAVUK"] 
 // var DogruKelime = "CEVİZ";
 var DogruKelime = kelimeler[Math.floor(Math.random() * kelimeler.length)];
 let tahminler = []
 
-let sayac = 0; // deneme hakkı için sayac
+let DenemeSayac = 0; // deneme hakkı için sayac
 let durum = 0; // kazanıp kazanmama durumunu kontrol etmek için değişken
 
 const guessInput = document.querySelector('.guess-control'); 
@@ -32,11 +29,15 @@ function TabloyuBosalt() { // Tahminleri kutucuklardan siler
   }
 }
 
+function TahminKutuBosalt() {
+  guessInput.value = "";
+}
+
 function RestartButonu() { // Oyuncu oyunu tekrar başlatmak isterse gerekli işlemleri yapan fonksiyon
   DogruKelime = kelimeler[Math.floor(Math.random() * kelimeler.length)];
   tahminler = []
   
-  sayac = 0;
+  DenemeSayac = 0;
   durum = 0;
   TabloyuBosalt();
   const KlavyeHarfleri = document.querySelectorAll('.keyboard-row button');
@@ -49,7 +50,7 @@ function RestartButonu() { // Oyuncu oyunu tekrar başlatmak isterse gerekli iş
 
   let restartButtonElemani = document.getElementById("restart-button");
   restartButtonElemani.style.display="none";
-  guessInput.value = "";
+  TahminKutuBosalt();
 }
 
 function Confetti(){ // Kazanma durumunda alkış sesi ve confetti efekti veren fonksiyon
@@ -77,25 +78,28 @@ function ClickMe() {  // check me butona tıklanınca çalışacak fonksiyon
 
     let inputValue = guessInput.value.toLocaleUpperCase('tr-TR');
   
-    if (sayac < 6 && durum == 0) {
+    if (DenemeSayac < 6 && durum == 0) {
+        console.log("bire girildi");
         if ((/\d/.test(inputValue))) { // TAHMİN SAYI İÇERİYORSA
-          guessInput.value = "";
+          TahminKutuBosalt();
           alert("Kutucukta sayı olmamalı.");
           return 0;
         }
 
         if (inputValue.length != 5) { // TAHMİN 5 HARFLİ DEĞİLSE
-          guessInput.value = "";
+          TahminKutuBosalt();
           alert("Girdiğiniz kelime 5 harfli olmalı.");
           return 0;
         }
         
         if (inputValue == DogruKelime) { // TAHMİN DOĞRUYSA
           
+          TahminKutuBosalt();
+
           const cellStyle = document.querySelectorAll('.cell');
           for(e = 0; e<5; e++){
             const KlavyeHarfi = document.querySelector(`button[data-key="${inputValue[e].toLocaleLowerCase('tr-TR')}"]`);
-            cellStyle[e + (sayac*5)].style.backgroundColor = '#538d4e';
+            cellStyle[e + (DenemeSayac*5)].style.backgroundColor = '#538d4e';
             KlavyeHarfi.style.backgroundColor = '#538d4e';
           }
           
@@ -104,6 +108,7 @@ function ClickMe() {  // check me butona tıklanınca çalışacak fonksiyon
 
           let mesaj= ("Kazandınız!🏆");
           let mesajElemani = document.getElementById("mesaj");
+          mesajElemani.style.display="flex";
           mesajElemani.innerHTML = mesaj;
 
           let restartButtonElemani = document.getElementById("restart-button");
@@ -130,36 +135,38 @@ function ClickMe() {  // check me butona tıklanınca çalışacak fonksiyon
                         // console.log(letter, " harfi kelime içinde var ve yeri doğru. Kelime: ", DogruKelime);
                         const cellStyle = document.querySelectorAll('.cell');
                         KlavyeHarfi.style.backgroundColor = '#538d4e';
-                        cellStyle[i + (sayac*5)].style.backgroundColor = '#538d4e';
+                        cellStyle[i + (DenemeSayac*5)].style.backgroundColor = '#538d4e';
                         
                     } else { // else if (index  != i && countDogru >= countTahmin)
                         // console.log(letter, " harfi kelime içinde var ama yeri doğru değil. Kelime: ", DogruKelime); 
                         const cellStyle = document.querySelectorAll('.cell');
                         KlavyeHarfi.style.backgroundColor = '#dde632';
-                        cellStyle[i + (sayac*5)].style.backgroundColor = '#dde632';
+                        cellStyle[i + (DenemeSayac*5)].style.backgroundColor = '#dde632';
 
                     }
                 } else {
                     // console.log(letter, " harfi kelimede yok. Kelime: ", DogruKelime);
                     const cellStyle = document.querySelectorAll('.cell');
                     KlavyeHarfi.style.backgroundColor = 'gray';
-                    cellStyle[i + (sayac*5)].style.backgroundColor = 'gray';
+                    cellStyle[i + (DenemeSayac*5)].style.backgroundColor = 'gray';
                 }
             }
             TabloyuDoldur();
             guessInput.value="";
         }
-        sayac++;
+        DenemeSayac++;
     }
+
     else if (durum == 1){
-      guessInput.value = "";
-      alert("Yarışmayı zaten kazandınız tekrar başlatmak ister misiniz?");
+      console.log("üçe girildi");
+      TahminKutuBosalt();
+      alert("Yarışmayı zaten kazandınız tekrar başlatmak için aşağıdaki tekrar oyna butonunu kullanınız.");
     }
     
-
-    else {  // toplam deneme hakları biterse alert veriyor.
+    if (DenemeSayac == 6){  // toplam deneme hakları biterse alert veriyor.
+      console.log("ikiye girildi");
       TabloyuDoldur();
-      guessInput.value = "";
+      TahminKutuBosalt();
       let mesaj= ("Kaybettiniz!☹");
       let mesajElemani = document.getElementById("mesaj");
       mesajElemani.innerHTML = mesaj;

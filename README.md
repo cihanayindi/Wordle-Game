@@ -1,6 +1,9 @@
 
 # Wordle-Game
 
+Vercell link:
+https://wordle-game-project.vercel.app/
+
 TR: 
 
 Bu proje Adnan Menderes Üniversitesi CSE206 Dersi vize ödevi olarak Cihan Ayindi, Hatice Kandemir ve Defne Turğut tarafından hazırlanmıştır. https://wordleturkce.bundle.app/ adresinde ki Wordle isimli oyunu baz alarak onun bir benzeri yapılmıştır ve ticari bir amaç taşımamaktadır. 
